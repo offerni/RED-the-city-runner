@@ -4,10 +4,42 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour {
-	private int currentScene;
 
-	public void LoadScene() {
+	private int currentScene;
+	private int numberOfScenes;
+
+	/// <summary>
+	/// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
+	/// </summary>
+	public void LoadNextScene() {
+		numberOfScenes = SceneManager.sceneCountInBuildSettings;
 		currentScene = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(currentScene + 1);
+
+		if (currentScene + 1 < numberOfScenes) {
+			SceneManager.LoadScene(currentScene + 1);
+		}
+	}
+
+	public void LoadScene(int sceneIndex) {
+		SceneManager.LoadScene(sceneIndex);
+	}
+
+	public void RestartGame() {
+		currentScene = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(currentScene);
+	}
+	/// <summary>
+	/// Compares if the timescale is equal to 0, if true: means that the game is paused, then Run.
+	/// If the timescale is different than 0, means that the game us running, then Pause.
+	/// 
+	/// </summary>
+	public void PauseGame() {
+		Time.timeScale = Mathf.Approximately(Time.timeScale, 0.0f) ? 1.0f : 0.0f;
+
+		currentScene = SceneManager.GetActiveScene().buildIndex;
+	}
+
+	public void Quit() {
+		Application.Quit();
 	}
 }
