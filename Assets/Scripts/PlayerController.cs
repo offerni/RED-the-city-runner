@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
 	[SerializeField] GameObject character;
@@ -22,8 +23,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-		Jump();
+	private void Update () {
+			Jump();
 	}
 
 	/// <summary>
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	public void Jump() {
 		grounded = Physics2D.IsTouchingLayers(myCollider);
 		if (grounded) {
-			if (Input.GetMouseButtonDown(0)) {
+			if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
 			}
 		}
