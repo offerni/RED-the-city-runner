@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update () {
+		if(!EventSystem.current.IsPointerOverGameObject()) {
 			Jump();
+		}
+			
 	}
 
 	/// <summary>
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 	public void Jump() {
 		grounded = Physics2D.IsTouchingLayers(myCollider);
 		if (grounded) {
-			if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
+			if (Input.GetMouseButtonDown(0)) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
 			}
 		}

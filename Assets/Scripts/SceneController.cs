@@ -2,11 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class SceneController : MonoBehaviour {
 
 	private int currentScene;
 	private int numberOfScenes;
+
+	private void Start() {
+
+		//fix the bug that was keeping the game paused after restart
+		if(Mathf.Approximately(Time.timeScale, 0.0f)) {
+			Time.timeScale = 1.0f;
+		}
+	}
+
+	
+
+	public void OnPointerEnter(PointerEventData eventData) {
+		print("oi");
+	}
+
+
 
 	/// <summary>
 	/// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
