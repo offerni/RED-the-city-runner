@@ -16,15 +16,7 @@ public class SceneController : MonoBehaviour {
 			Time.timeScale = 1.0f;
 		}
 	}
-
 	
-
-	public void OnPointerEnter(PointerEventData eventData) {
-		print("oi");
-	}
-
-
-
 	/// <summary>
 	/// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
 	/// </summary>

@@ -15,6 +15,19 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D myRigidbody;
 	private BoxCollider2D myCollider;
 
+	/// <summary>
+	/// listen the current eventsystem position, set it's position to mouse current position,
+	/// populate the current position with raycasts and return true if is populated
+	/// in other words, check if other UI element is touched
+	/// </summary>
+	/// <returns></returns>
+	private bool IsPointerOverUIObject() {
+		PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+		eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+		List<RaycastResult> results = new List<RaycastResult>();		
+		EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+		return results.Count > 0;
+	}
 
 	private void Start() {
 		myRigidbody = GetComponent<Rigidbody2D>();
@@ -24,10 +37,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update () {
-		if(!EventSystem.current.IsPointerOverGameObject()) {
 			Jump();
-		}
-			
 	}
 
 	/// <summary>
@@ -36,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 	public void Jump() {
 		grounded = Physics2D.IsTouchingLayers(myCollider);
 		if (grounded) {
-			if (Input.GetMouseButtonDown(0)) {
+			if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject()) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
 			}
 		}
