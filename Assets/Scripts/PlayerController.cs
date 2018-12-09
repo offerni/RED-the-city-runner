@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// This function check if the character is on the ground and jump if it's true.
+	/// This function check if the game isn't paused and the character is on the ground, if true: Jump.
 	/// </summary>
 	public void Jump() {
 		grounded = Physics2D.IsTouchingLayers(myCollider);
 		if (grounded) {
-			if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject()) {
+			if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject() && !Mathf.Approximately(Time.timeScale, 0.0f)) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
 				audioSourceJump.Play();
 			}
