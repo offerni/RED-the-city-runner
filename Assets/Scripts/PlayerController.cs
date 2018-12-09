@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
-	[SerializeField] GameObject character;
 	[Range(5, 50)]
 	[SerializeField] int jumpForceY = 15;
 	public bool grounded = false;
@@ -14,6 +13,9 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D myRigidbody;
 	private BoxCollider2D myCollider;
+	private AudioSource audioSource;
+	private AudioSource audioSourceJump;
+	private float audioVolume = 0.50f;
 
 	/// <summary>
 	/// listen the current eventsystem position, set it's position to mouse current position,
@@ -33,11 +35,14 @@ public class PlayerController : MonoBehaviour {
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<BoxCollider2D>();
 		myRigidbody.velocity = new Vector2(jumpForceStartX, jumpForceStartY);
+		audioSource = GetComponent<AudioSource>();
+		audioSourceJump = audioSource;
+		audioSourceJump.volume = audioVolume;
 	}
 
 	// Update is called once per frame
 	private void Update () {
-			Jump();
+		Jump();
 	}
 
 	/// <summary>
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour {
 		if (grounded) {
 			if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject()) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
+				audioSourceJump.Play();
 			}
 		}
 	}

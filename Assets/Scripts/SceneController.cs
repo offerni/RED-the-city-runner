@@ -8,6 +8,12 @@ public class SceneController : MonoBehaviour {
 
 	private int currentScene;
 	private int numberOfScenes;
+	private bool musicOn;
+	private MusicPlayer musicPlayer;
+
+	private void Awake() {
+		
+	}
 
 	private void Start() {
 
@@ -46,6 +52,11 @@ public class SceneController : MonoBehaviour {
 		Time.timeScale = Mathf.Approximately(Time.timeScale, 0.0f) ? 1.0f : 0.0f;
 
 		currentScene = SceneManager.GetActiveScene().buildIndex;
+	}
+
+	public void ToggleMusicButton() {
+		musicPlayer = FindObjectOfType<MusicPlayer>();
+		musicPlayer.ToggleMusic();
 	}
 
 	public void Quit() {
