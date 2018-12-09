@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour {
 	private int numberOfScenes;
 	private bool musicOn;
 	private MusicPlayer musicPlayer;
+	private bool gamePaused;
 
 	private void Awake() {
 		
@@ -40,18 +41,27 @@ public class SceneController : MonoBehaviour {
 	}
 
 	public void RestartGame() {
+		musicPlayer = FindObjectOfType<MusicPlayer>();
+		musicPlayer.RestartMusic();
 		currentScene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(currentScene);
+
 	}
 	/// <summary>
-	/// Compares if the timescale is equal to 0, if true: means that the game is paused, then Run.
-	/// If the timescale is different than 0, means that the game us running, then Pause.
+	/// Compares if the timescale is equal to 0, if true: Unpause the Game and Music. And vice versa.
 	/// 
 	/// </summary>
 	public void PauseGame() {
-		Time.timeScale = Mathf.Approximately(Time.timeScale, 0.0f) ? 1.0f : 0.0f;
+		musicPlayer = FindObjectOfType<MusicPlayer>();
+		var backgroundMusic = musicPlayer.GetComponent<AudioSource>();
 
-		currentScene = SceneManager.GetActiveScene().buildIndex;
+		if (Mathf.Approximately(Time.timeScale, 0.0f)) {
+			Time.timeScale = 1.0f;
+			backgroundMusic.Play();
+		} else {
+			Time.timeScale = 0.0f;
+			backgroundMusic.Pause();
+		}
 	}
 
 	public void ToggleMusicButton() {

@@ -553,6 +553,10 @@ Prefab:
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1650095464606712, guid: 2a177976519e48f438ec9bf3cd01769c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a177976519e48f438ec9bf3cd01769c, type: 2}
   m_IsPrefabAsset: 0
