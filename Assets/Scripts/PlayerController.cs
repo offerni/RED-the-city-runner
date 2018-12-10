@@ -57,4 +57,10 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnCollisionStay2D(Collision2D col) {
+		if (col.collider.gameObject.tag == "Ground") { //Check the collider is ground
+			transform.up = col.contacts[0].normal;
+		}
+	}
 }
