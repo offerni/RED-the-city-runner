@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour {
 	private bool musicOn;
 	private MusicPlayer musicPlayer;
 	private bool gamePaused;
+	private int collisionCount = 0;
 
 	private void Awake() {
 		
@@ -22,14 +23,15 @@ public class SceneController : MonoBehaviour {
 		if(Mathf.Approximately(Time.timeScale, 0.0f)) {
 			Time.timeScale = 1.0f;
 		}
+		numberOfScenes = SceneManager.sceneCountInBuildSettings;
+		currentScene = SceneManager.GetActiveScene().buildIndex;
 	}
 	
 	/// <summary>
 	/// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
 	/// </summary>
 	public void LoadNextScene() {
-		numberOfScenes = SceneManager.sceneCountInBuildSettings;
-		currentScene = SceneManager.GetActiveScene().buildIndex;
+
 
 		if (currentScene + 1 < numberOfScenes) {
 			SceneManager.LoadScene(currentScene + 1);
@@ -64,6 +66,10 @@ public class SceneController : MonoBehaviour {
 		}
 	}
 
+	private void GameOver() {
+		LoadScene(numberOfScenes - 1);
+	}
+
 	public void ToggleMusicButton() {
 		musicPlayer = FindObjectOfType<MusicPlayer>();
 		musicPlayer.ToggleMusic();
@@ -71,5 +77,12 @@ public class SceneController : MonoBehaviour {
 
 	public void Quit() {
 		Application.Quit();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		collisionCount++;
+		if (collisionCount > 1) {
+			GameOver();
+		}
 	}
 }

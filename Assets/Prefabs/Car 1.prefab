@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847518665515128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.98, y: -1.29, z: 0.43}
+  m_LocalPosition: {x: -0.11238307, y: -2.353629, z: 0.43}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 4950496203108576}
@@ -191,7 +191,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.03
   m_Points:
-  - {x: -1.5711083, y: 0.6169859}
+  - {x: 0.38665488, y: 1.3428973}
+  - {x: -1.5617222, y: 0.6379127}
   - {x: -2.6199894, y: 0.59418476}
   - {x: -3.0673501, y: 0.5357317}
   - {x: -3.457437, y: 0.47866338}
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a568c81905cf07429ab68f31bb270e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.72
+  speed: 6
 --- !u!212 &212109351433063272
 SpriteRenderer:
   m_ObjectHideFlags: 1

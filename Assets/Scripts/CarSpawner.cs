@@ -7,7 +7,7 @@ public class CarSpawner : MonoBehaviour {
 	[SerializeField] bool spawning = true;
 
 	private int minSpawnDelay = 3;
-	private int maxSpawnDelay = 10;
+	private int maxSpawnDelay = 7;
 	private int timeBetweenSpawns;
 
 	// Use this for initialization
