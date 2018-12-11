@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 61019349259102970}
   m_Layer: 9
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 1912665509298548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.02, y: -2.15, z: -0.9097879}
-  m_LocalScale: {x: 5.678063, y: 0.52843386, z: 0.56780726}
+  m_LocalScale: {x: 11.554148, y: 0.52843386, z: 0.56780726}
   m_Children: []
   m_Father: {fileID: 4290952675858832}
   m_RootOrder: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 0
-  scrollingVelocity: 1
+  scrollingVelocity: 1.5
 --- !u!114 &114878874937718776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,4 +543,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 0
-  scrollingVelocity: 1
+  scrollingVelocity: 1.5

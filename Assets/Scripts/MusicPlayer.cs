@@ -9,10 +9,16 @@ public class MusicPlayer : MonoBehaviour {
 	private bool musicOn;
 	private PlayerController character;
 
+	/// <summary>
+	/// Setting up singleton, if there's more than one instance of this object, it'll be destroyed.
+	/// </summary>
 	private void Awake() {
 		musicPlayer = GetComponent<AudioSource>();
-		DontDestroyOnLoad(musicPlayer);
 		SetMusicVolume();
+		DontDestroyOnLoad(this);
+		if(FindObjectsOfType<MusicPlayer>().Length > 1) {
+			Destroy(gameObject);
+		}
 	}
 
 	private void SetMusicVolume() {
@@ -29,9 +35,5 @@ public class MusicPlayer : MonoBehaviour {
 	public void RestartMusic() {
 		musicPlayer.Stop();
 		musicPlayer.Play();
-	}
-
-	public void PauseMusic() {
-
 	}
 }

@@ -5,17 +5,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
-	[Range(5, 50)]
-	[SerializeField] int jumpForceY = 15;
-	public bool grounded = false;
-	[SerializeField] int jumpForceStartY = 16;
-	[SerializeField] int jumpForceStartX = 6;	
+	[SerializeField] int jumpForceY = 13;
+	[SerializeField] int doubleJumpForceY = 10;
+	[SerializeField] int forceStartY = 16;
+	[SerializeField] int forceStartX = 6;
+	[SerializeField] int jumpCount = 0; // making sure that the char isn't have any remaining jumps on start
 
+	public bool grounded = false;
 	private Rigidbody2D myRigidbody;
 	private BoxCollider2D myCollider;
 	private AudioSource audioSource;
 	private AudioSource audioSourceJump;
 	private float audioVolume = 0.50f;
+	
 
 	/// <summary>
 	/// listen the current eventsystem position, set it's position to mouse current position,
@@ -34,33 +36,51 @@ public class PlayerController : MonoBehaviour {
 	private void Start() {
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<BoxCollider2D>();
-		myRigidbody.velocity = new Vector2(jumpForceStartX, jumpForceStartY);
+		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
 		audioSource = GetComponent<AudioSource>();
 		audioSourceJump = audioSource;
 		audioSourceJump.volume = audioVolume;
 	}
-
-	// Update is called once per frame
-	private void Update () {
-		Jump();
+	private void Update() {
+		if (jumpCount > 1) {
+			Jump(jumpForceY);
+		} else if (jumpCount > 0 && jumpCount <=1) {
+			Jump(doubleJumpForceY);
+		}
 	}
 
 	/// <summary>
 	/// This function check if the game isn't paused and the character is on the ground, if true: Jump.
+	/// Doublejump on second click with a lower yPush (Finally!!)
 	/// </summary>
-	public void Jump() {
-		grounded = Physics2D.IsTouchingLayers(myCollider);
-		if (grounded) {
-			if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject() && !Mathf.Approximately(Time.timeScale, 0.0f)) {
-				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForceY);
-				audioSourceJump.Play();
-			}
+	public void Jump(int forceY) {
+		if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject() && !Mathf.Approximately(Time.timeScale, 0.0f)) {
+			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, forceY);
+			audioSourceJump.Play();
+			jumpCount--;
+		} 
+	}
+
+	/// <summary>
+	/// Check if the player is on the ground and do stuff
+	/// </summary>
+	/// <param name="collision"></param>
+	private void OnCollisionStay2D(Collision2D collision) {
+		if (collision.gameObject.layer == 9) {
+			jumpCount = 2;
+			myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			grounded = true;
 		}
 	}
 
-	void OnCollisionStay2D(Collision2D col) {
-		if (col.collider.gameObject.tag == "Ground") { //Check the collider is ground
-			transform.up = col.contacts[0].normal;
+	/// <summary>
+	/// Check if player left the ground and do other stuff ('Sorry, I'm tired')
+	/// </summary>
+	/// <param name="collision"></param>
+	private void OnCollisionExit2D(Collision2D collision) {
+		if (collision.gameObject.layer == 9) {
+			grounded = false;
+			jumpCount--;
 		}
 	}
 }

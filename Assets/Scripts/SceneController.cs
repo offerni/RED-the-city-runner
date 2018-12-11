@@ -13,10 +13,6 @@ public class SceneController : MonoBehaviour {
 	private bool gamePaused;
 	private int collisionCount = 0;
 
-	private void Awake() {
-		
-	}
-
 	private void Start() {
 
 		//fix the bug that was keeping the game paused after restart
@@ -32,13 +28,13 @@ public class SceneController : MonoBehaviour {
 	/// </summary>
 	public void LoadNextScene() {
 
-
 		if (currentScene + 1 < numberOfScenes) {
 			SceneManager.LoadScene(currentScene + 1);
 		}
 	}
 
 	public void LoadScene(int sceneIndex) {
+
 		SceneManager.LoadScene(sceneIndex);
 	}
 
@@ -67,6 +63,7 @@ public class SceneController : MonoBehaviour {
 	}
 
 	private void GameOver() {
+		musicPlayer = FindObjectOfType<MusicPlayer>();
 		LoadScene(numberOfScenes - 1);
 	}
 
@@ -80,6 +77,8 @@ public class SceneController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
+		var character = FindObjectOfType<PlayerController>();
+		character.grounded = false;
 		collisionCount++;
 		if (collisionCount > 1) {
 			GameOver();
