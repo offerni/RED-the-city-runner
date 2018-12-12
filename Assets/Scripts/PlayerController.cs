@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] int forceStartY = 16;
 	[SerializeField] int forceStartX = 6;
 	[SerializeField] int jumpCount = 0; // making sure that the char isn't have any remaining jumps on start
+	[Range(0, 1)]
+	[SerializeField] float audioVolume = 0.3f;
 
 	public bool grounded = false;
 	private Rigidbody2D myRigidbody;
 	private BoxCollider2D myCollider;
 	private AudioSource audioSource;
 	private AudioSource audioSourceJump;
-	private float audioVolume = 0.50f;
+	
 	private int xPush = -20;
 	private int yPush = 15;
 	private int speedPush = 35;

@@ -357,6 +357,7 @@ MonoBehaviour:
   forceStartY: 16
   forceStartX: 6
   jumpCount: 0
+  audioVolume: 0.4
   grounded: 0
 --- !u!212 &212005394140937708
 SpriteRenderer:
