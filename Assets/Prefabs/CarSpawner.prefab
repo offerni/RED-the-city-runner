@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596597225856738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.13, y: -1.99, z: 0.43}
+  m_LocalPosition: {x: 4.13, y: -1.99, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carPrefabs:
   - {fileID: 114446160031964536, guid: 495e56489efce4e448b2c41c317e7c8e, type: 2}
+  - {fileID: 114446160031964536, guid: 32b08a5ae9b286f428c045d8dff47ebc, type: 2}
   spawning: 1
   minSpawnDelay: 1
   maxSpawnDelay: 5

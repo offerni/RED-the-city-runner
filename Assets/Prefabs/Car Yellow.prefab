@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50530796380165830}
   - component: {fileID: 114446160031964536}
   m_Layer: 12
-  m_Name: Car 1
+  m_Name: Car Yellow
   m_TagString: ImpactArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191250837632830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0365558, y: -2.0436754, z: 0.12}
+  m_LocalPosition: {x: -1.1567588, y: -2.434739, z: 0.1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 4960292760431646}
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745824596292352}
   m_LocalRotation: {x: -0, y: -0, z: 0, w: -1}
-  m_LocalPosition: {x: -3.436, y: -0.88, z: 0.25}
+  m_LocalPosition: {x: -3.436, y: -0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4960292760431646}
@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682518572161378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 3.23, y: -0.87, z: 0.25}
+  m_LocalPosition: {x: 3.23, y: -0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4960292760431646}
@@ -174,7 +174,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!68 &68075410995667798
 EdgeCollider2D:
@@ -191,7 +191,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.38665488, y: 1.3428973}
+  - {x: 0.30388314, y: 1.3115882}
   - {x: -1.5617222, y: 0.6379127}
   - {x: -2.6199894, y: 0.59418476}
   - {x: -3.0673501, y: 0.5357317}
@@ -201,14 +201,10 @@ EdgeCollider2D:
   - {x: -5.006195, y: 0.07357835}
   - {x: -5.3841085, y: -0.08335391}
   - {x: -5.798789, y: -0.26368535}
-  - {x: -6.0336266, y: -0.45723116}
-  - {x: -6.0640845, y: -0.50519544}
-  - {x: -6.1558294, y: -0.7206797}
-  - {x: -6.150768, y: -0.72909427}
-  - {x: -6.1594534, y: -0.73847204}
-  - {x: -6.0874467, y: -0.9185838}
-  - {x: -5.7853303, y: -1.0603371}
-  - {x: -5.4991803, y: -1.165761}
+  - {x: -6.2345805, y: -0.39329207}
+  - {x: -6.237636, y: -0.5600015}
+  - {x: -6.2297826, y: -2.049577}
+  - {x: -3.6329231, y: -2.0517666}
 --- !u!68 &68767466541784114
 EdgeCollider2D:
   m_ObjectHideFlags: 1
@@ -224,18 +220,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -4.2838707, y: -1.3095767}
-  - {x: -4.2659197, y: -0.94378304}
-  - {x: -4.150063, y: -0.7140008}
-  - {x: -4.0515265, y: -0.6462605}
-  - {x: -3.93341, y: -0.54658645}
-  - {x: -3.4016209, y: -0.28862315}
-  - {x: -2.9669213, y: -0.21817285}
-  - {x: -2.7510765, y: -0.17973422}
-  - {x: -1.9342914, y: -0.13860184}
-  - {x: 0.16781567, y: 0.290091}
-  - {x: 0.7353899, y: 1.0364131}
-  - {x: 0.40662146, y: 1.3752384}
+  - {x: 0.31132576, y: 1.2918543}
+  - {x: 0.7371069, y: 1.4185293}
   - {x: 1.2396891, y: 1.4604297}
   - {x: 1.4810067, y: 1.4591002}
   - {x: 1.6005753, y: 1.4380958}
@@ -250,11 +236,6 @@ EdgeCollider2D:
   - {x: 6.071292, y: -0.60449237}
   - {x: 5.9361515, y: -1.0498495}
   - {x: 4.3052015, y: -1.5673743}
-  - {x: 4.3172197, y: -1.9573933}
-  - {x: -4.8221455, y: -1.9759768}
-  - {x: -4.241167, y: -1.528828}
-  - {x: -4.2451167, y: -1.393338}
-  - {x: -4.2978716, y: -1.4524109}
 --- !u!95 &95139268341412890
 Animator:
   serializedVersion: 3
@@ -302,9 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a568c81905cf07429ab68f31bb270e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPush: -9
-  yPush: 15
-  speed: 8
+  speed: 6.87
 --- !u!212 &212341386476945190
 SpriteRenderer:
   m_ObjectHideFlags: 1

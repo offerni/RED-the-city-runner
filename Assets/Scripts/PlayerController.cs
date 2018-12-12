@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour {
 	private AudioSource audioSource;
 	private AudioSource audioSourceJump;
 	private float audioVolume = 0.50f;
-	
+	private int xPush = -20;
+	private int yPush = 15;
+	private int speedPush = 35;
+
 
 	/// <summary>
 	/// listen the current eventsystem position, set it's position to mouse current position,
@@ -62,14 +65,25 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Check if the player is on the ground and do stuff
+	/// if impact on layer 9(ground), add rigidbody axis constraints;
+	/// if impact on layer 10(car), reset the jump as well to able double jump;
+	/// if impact on layer 12(impact area), remove all constraints and push the player to gameover trigger;
 	/// </summary>
 	/// <param name="collision"></param>
-	private void OnCollisionStay2D(Collision2D collision) {
+	private void OnCollisionEnter2D(Collision2D collision) {
+
 		if (collision.gameObject.layer == 9) {
 			jumpCount = 2;
 			myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 			grounded = true;
+
+		} if (collision.gameObject.layer == 10) {
+			jumpCount = 2;
+			grounded = true;
+
+		} if (collision.gameObject.layer == 12) {
+			myRigidbody.constraints = RigidbodyConstraints2D.None;
+			myRigidbody.velocity = new Vector2(xPush, yPush) * speedPush * Time.deltaTime;
 		}
 	}
 
@@ -78,9 +92,8 @@ public class PlayerController : MonoBehaviour {
 	/// </summary>
 	/// <param name="collision"></param>
 	private void OnCollisionExit2D(Collision2D collision) {
-		if (collision.gameObject.layer == 9) {
+		if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10) {
 			grounded = false;
-			jumpCount--;
 		}
 	}
 }

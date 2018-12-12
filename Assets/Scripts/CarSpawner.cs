@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class CarSpawner : MonoBehaviour {
@@ -14,15 +15,21 @@ public class CarSpawner : MonoBehaviour {
 	IEnumerator Start () {
 
 		while(spawning) {
-			yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
-			SpawnCar();
+			for (int i = 0; i < carPrefabs.Length; i++) {
+				yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+				var lastIndex = carPrefabs.Length;
+				var randomCar = Random.Range(0, lastIndex);
+				SpawnCar(carPrefabs[randomCar], randomCar);
+			}
 		}
-		
 	}
 
-	public void SpawnCar() {
-		foreach (var car in carPrefabs) {
+	public void SpawnCar(Car car, int carIndex) {
+		if (carIndex == 2) {
+			Instantiate(car, transform.position + (transform.up * 0.5f), transform.rotation);
+		} else {
 			Instantiate(car, transform.position, transform.rotation);
 		}
+		
 	}
 }
