@@ -6,10 +6,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	[SerializeField] float moveSpeed = 2f;
+	[SerializeField] int enemyDamage = 1;
+	[SerializeField] PlayerController character;
 
 	// Use this for initialization
 	void Start () {
-		
+		print(character.life);
 	}
 	
 	// Update is called once per frame
@@ -18,15 +20,23 @@ public class Enemy : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// function to add damage to the player on collision
+	/// function to destroy the object after leave the player scenario
 	/// </summary>
 	/// <param name="collision"></param>
 	private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.gameObject.layer == 8) {
-			print("Damage added");
-		} else {
+		if (collision.gameObject.layer == 13) {
 			Destroy(gameObject);
+		} if (collision.gameObject.layer == 8) {
+			HitCharacter(1);
+			if (character.life < enemyDamage) {
+				var sceneController = FindObjectOfType<SceneController>();
+				sceneController.GameOver();
+			}
 		}
-		
+	}
+
+	private void HitCharacter(int dmg) {
+		Destroy(GameObject.Find("Heart_" + character.life));
+		character.life -= dmg;
 	}
 }

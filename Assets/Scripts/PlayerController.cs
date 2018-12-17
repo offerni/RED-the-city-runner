@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
-	[SerializeField] int life = 3;
+	public int life = 3;
 	[SerializeField] int jumpForceY = 13;
 	[SerializeField] int doubleJumpForceY = 10;
 	[SerializeField] int forceStartY = 16;
@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour {
 		audioSource = GetComponent<AudioSource>();
 		audioSourceJump = audioSource;
 		audioSourceJump.volume = audioVolume;
+
+		
+
 	}
 	private void Update() {
 		if (jumpCount > 1) {
@@ -87,9 +90,7 @@ public class PlayerController : MonoBehaviour {
 		} if (collision.gameObject.layer == 12) {
 			myRigidbody.constraints = RigidbodyConstraints2D.None;
 			myRigidbody.velocity = new Vector2(xPush, yPush) * speedPush * Time.deltaTime;
-		} if (collision.gameObject.layer == 14) {
-			print("Perdeu vida");
-		}
+		} 
 	}
 
 	/// <summary>

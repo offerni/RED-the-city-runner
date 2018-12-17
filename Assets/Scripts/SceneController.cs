@@ -62,7 +62,7 @@ public class SceneController : MonoBehaviour {
 		}
 	}
 
-	private void GameOver() {
+	public void GameOver() {
 		musicPlayer = FindObjectOfType<MusicPlayer>();
 		LoadScene(numberOfScenes - 1);
 	}
@@ -78,10 +78,12 @@ public class SceneController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		var character = FindObjectOfType<PlayerController>();
-		character.grounded = false;
-		collisionCount++;
-		if (collisionCount > 1) {
-			GameOver();
+		if(collision.gameObject.layer == 8) {
+			character.grounded = false;
+			collisionCount++;
+			if (collisionCount > 1) {
+				GameOver();
+			}
 		}
 	}
 }
