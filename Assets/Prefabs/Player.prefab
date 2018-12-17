@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acb2f06a84547842b9f1a933abf1c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 3
   jumpForceY: 13
   doubleJumpForceY: 10
   forceStartY: 16
