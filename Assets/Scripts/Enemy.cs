@@ -9,10 +9,6 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] int enemyDamage = 1;
 	[SerializeField] PlayerController character;
 
-	// Use this for initialization
-	void Start () {
-		print(character.life);
-	}
 	
 	// Update is called once per frame
 	void Update () {

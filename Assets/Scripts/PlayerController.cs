@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
-	public int life = 3;
+	public int life;
 	[SerializeField] int jumpForceY = 13;
 	[SerializeField] int doubleJumpForceY = 10;
 	[SerializeField] int forceStartY = 16;
@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour {
 		audioSourceJump = audioSource;
 		audioSourceJump.volume = audioVolume;
 
-		
 
-	}
+
+}
 	private void Update() {
 		if (jumpCount > 1) {
 			Jump(jumpForceY);
