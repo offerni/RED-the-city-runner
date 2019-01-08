@@ -5,14 +5,39 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	[SerializeField] float moveSpeed = 2f;
+	[SerializeField] float moveSpeed = 1f;
 	[SerializeField] int enemyDamage = 1;
 	[SerializeField] PlayerController character;
 
-	
+	[SerializeField] List<Transform> waypoints;
+	[SerializeField] int waypointIndex = 0;
+
+	private void Start() {
+		transform.position = waypoints[waypointIndex].transform.position;
+	}
+
+
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+
+		MoveEnemy();
+	}
+
+	private void MoveEnemy() {
+		if (waypointIndex <= waypoints.Count - 1) {
+			var targetPosition = waypoints[waypointIndex].transform.position;
+			var moveFrame = moveSpeed * Time.deltaTime;
+			transform.position = Vector2.MoveTowards(
+				transform.position,
+				targetPosition,
+				moveFrame);
+
+			if (transform.position == targetPosition) {
+				waypointIndex++;
+			}
+		} else {
+			Destroy(gameObject);
+		}
 	}
 
 	/// <summary>

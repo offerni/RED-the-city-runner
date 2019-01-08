@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 	[SerializeField] Enemy[] enemyPrefabs;
 	[SerializeField] bool spawning = true;
-
 	[SerializeField] int minSpawnDelay = 1;
 	[SerializeField] int maxSpawnDelay = 5;
 	private int timeBetweenSpawns;
