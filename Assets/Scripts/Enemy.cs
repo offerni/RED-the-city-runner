@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour {
 		transform.position = waypoints[waypointIndex].transform.position;
 	}
 
+	
+
 
 	// Update is called once per frame
 	void Update () {
@@ -48,16 +50,12 @@ public class Enemy : MonoBehaviour {
 		if (collision.gameObject.layer == 13) {
 			Destroy(gameObject);
 		} if (collision.gameObject.layer == 8) {
-			HitCharacter(1);
-			if (character.life < enemyDamage) {
+			character.HitCharacter(1);
+			var life = FindObjectOfType<Life>();
+			if (life.GetLife() < enemyDamage) {
 				var sceneController = FindObjectOfType<SceneController>();
 				sceneController.GameOver();
 			}
 		}
-	}
-
-	private void HitCharacter(int dmg) {
-		Destroy(GameObject.Find("Heart_" + character.life));
-		character.life -= dmg;
 	}
 }

@@ -7,11 +7,21 @@ public class Life : MonoBehaviour {
 	PlayerController character;
 	private GameObject clone;
 
+	private int life;
+
+	public int GetLife() {
+		return life;
+	}
+
+	public void SetLife(int life) {
+		this.life = life;
+	}
+
 	private int numberOfHearts;
 
 	private void Start() {
 		character = FindObjectOfType<PlayerController>();
-		for (numberOfHearts = 1; numberOfHearts <= character.life; numberOfHearts++) {
+		for (numberOfHearts = 1; numberOfHearts <= GetLife(); numberOfHearts++) {
 			clone = Instantiate(heart, transform.position, transform.rotation);
 			clone.transform.position += Vector3.right * numberOfHearts;
 			clone.name = "Heart_" + numberOfHearts;

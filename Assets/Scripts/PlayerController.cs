@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
-	public int life;
+	
 	[SerializeField] int jumpForceY = 13;
 	[SerializeField] int doubleJumpForceY = 10;
 	[SerializeField] int forceStartY = 16;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private BoxCollider2D myCollider;
 	private AudioSource audioSource;
 	private AudioSource audioSourceJump;
+	private Life life;
 	
 	private int xPush = -20;
 	private int yPush = 15;
@@ -46,9 +47,8 @@ public class PlayerController : MonoBehaviour {
 		audioSource = GetComponent<AudioSource>();
 		audioSourceJump = audioSource;
 		audioSourceJump.volume = audioVolume;
-
-
-
+		life = FindObjectOfType<Life>();
+		life.SetLife(3);
 }
 	private void Update() {
 		if (jumpCount > 1) {
@@ -101,5 +101,14 @@ public class PlayerController : MonoBehaviour {
 		if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10) {
 			grounded = false;
 		}
+	}
+
+
+
+	public void HitCharacter(int dmg) {
+		life = FindObjectOfType<Life>();
+		Destroy(GameObject.Find("Heart_" + life.GetLife()));
+		life.SetLife(life.GetLife() - dmg);
+		print(life.GetLife());
 	}
 }

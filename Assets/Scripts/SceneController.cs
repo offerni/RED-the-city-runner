@@ -42,8 +42,7 @@ public class SceneController : MonoBehaviour {
 		musicPlayer = FindObjectOfType<MusicPlayer>();
 		musicPlayer.RestartMusic();
 		currentScene = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(currentScene);
-
+		LoadScene(currentScene);
 	}
 	/// <summary>
 	/// Compares if the timescale is equal to 0, if true: Unpause the Game and Music. And vice versa.
