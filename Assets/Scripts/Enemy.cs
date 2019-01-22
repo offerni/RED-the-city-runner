@@ -12,12 +12,12 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] List<Transform> waypoints;
 	[SerializeField] int waypointIndex = 0;
 
+	private EnemyHead enemyHead;
+	private BoxCollider2D headCollider2D;
+
 	private void Start() {
 		transform.position = waypoints[waypointIndex].transform.position;
 	}
-
-	
-
 
 	// Update is called once per frame
 	void Update () {
@@ -47,12 +47,24 @@ public class Enemy : MonoBehaviour {
 	/// </summary>
 	/// <param name="collision"></param>
 	private void OnTriggerEnter2D(Collider2D collision) {
+
 		if (collision.gameObject.layer == 13) {
+
 			Destroy(gameObject);
+
+		  /* If has impact on player, disable the head collider to avoid 
+		   * kill enemy from bottom to top when hits the head collider */		
 		} if (collision.gameObject.layer == 8) {
+
+			enemyHead = FindObjectOfType<EnemyHead>();
+			headCollider2D = enemyHead.GetComponent<BoxCollider2D>();
+			headCollider2D.enabled = false;
 			character.HitCharacter(1);
+			
+
 			var life = FindObjectOfType<Life>();
 			if (life.GetLife() < enemyDamage) {
+
 				var sceneController = FindObjectOfType<SceneController>();
 				sceneController.GameOver();
 			}

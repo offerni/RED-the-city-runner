@@ -103,12 +103,9 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-
-
 	public void HitCharacter(int dmg) {
 		life = FindObjectOfType<Life>();
 		Destroy(GameObject.Find("Heart_" + life.GetLife()));
 		life.SetLife(life.GetLife() - dmg);
-		print(life.GetLife());
 	}
 }

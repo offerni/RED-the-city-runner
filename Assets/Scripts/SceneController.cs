@@ -12,11 +12,12 @@ public class SceneController : MonoBehaviour {
 	private MusicPlayer musicPlayer;
 	private bool gamePaused;
 	private int collisionCount = 0;
+	GameSession gameSession;
 
 	private void Start() {
 
 		//fix the bug that was keeping the game paused after restart
-		if(Mathf.Approximately(Time.timeScale, 0.0f)) {
+		if (Mathf.Approximately(Time.timeScale, 0.0f)) {
 			Time.timeScale = 1.0f;
 		}
 		numberOfScenes = SceneManager.sceneCountInBuildSettings;
@@ -39,10 +40,14 @@ public class SceneController : MonoBehaviour {
 	}
 
 	public void RestartGame() {
-		musicPlayer = FindObjectOfType<MusicPlayer>();
-		musicPlayer.RestartMusic();
-		currentScene = SceneManager.GetActiveScene().buildIndex;
-		LoadScene(currentScene);
+		var mainGameSceneIndex = 1;
+		//musicPlayer = FindObjectOfType<MusicPlayer>();
+		//musicPlayer.RestartMusic();
+		//currentScene = SceneManager.GetActiveScene().buildIndex;
+		LoadScene(mainGameSceneIndex);
+		gameSession = FindObjectOfType<GameSession>();
+		gameSession.ResetScore();
+
 	}
 	/// <summary>
 	/// Compares if the timescale is equal to 0, if true: Unpause the Game and Music. And vice versa.

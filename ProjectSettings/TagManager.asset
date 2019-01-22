@@ -21,9 +21,9 @@ TagManager:
   - Car
   - gameOverLine
   - ImpactArea
-  - DestoyrArea
+  - DestroyArea
   - Enemy
-  - 
+  - EnemyHead
   - 
   - 
   - 
