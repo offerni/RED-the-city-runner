@@ -1,8 +1,15 @@
 # EndlessRunner
 An Endless Runner mobile game made in Unity 2D and C#.
-Basically, you have to jump to avoid enemies while a score bar counts your points based on how much time you are alive.
+Basically, you have to jump to avoid get hit by enemies and lose life and/or get hit by cars and get pushed away from the screen losing the game instantly. 
+There's a scoreboard that counts your score based in how much time you're is alive.
 
-In future updates, the character will be able to collect coins, jump in higher platforms while some cars run on the street and 
-if the player falls, he'll have a chance to go back to the platforms if not hit by a car.
+**Latest updates**
+- The character now can jump on the enemy's head to kill them and make more points;
+- Added player hit and enemy death sounds;
+- Fixed sound bug on game restart
 
-it's still under development, several changes may occur.
+**Next updates**
+- The character will be able to collect coins to win more points to improve the game experience and be more fun
+
+**IMPORTANT**
+- This game is under development, several changes may occur.
