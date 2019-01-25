@@ -35,13 +35,12 @@ public class SceneController : MonoBehaviour {
 	}
 
 	public void LoadScene(int sceneIndex) {
-
 		SceneManager.LoadScene(sceneIndex);
 	}
 
 	public void RestartGame() {
 		var mainGameSceneIndex = 1;
-		//musicPlayer = FindObjectOfType<MusicPlayer>();
+		musicPlayer = FindObjectOfType<MusicPlayer>();
 		//musicPlayer.RestartMusic();
 		//currentScene = SceneManager.GetActiveScene().buildIndex;
 		LoadScene(mainGameSceneIndex);
@@ -73,7 +72,7 @@ public class SceneController : MonoBehaviour {
 
 	public void ToggleMusicButton() {
 		musicPlayer = FindObjectOfType<MusicPlayer>();
-		musicPlayer.MuteSounds();
+		MusicPlayer.MuteSounds();
 	}
 
 	public void Quit() {

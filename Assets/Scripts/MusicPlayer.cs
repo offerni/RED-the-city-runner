@@ -5,9 +5,7 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour {
 
 	private AudioSource musicPlayer;
-	private float bgmVolume = 0.80f;
-	private bool musicOn;
-	private PlayerController character;
+	[SerializeField] float bgmVolume = 0.80f;
 
 	/// <summary>
 	/// Setting up singleton, if there's more than one instance of this object, it'll be destroyed.
@@ -25,10 +23,8 @@ public class MusicPlayer : MonoBehaviour {
 		musicPlayer.volume = bgmVolume;
 	}
 
-	public void MuteSounds() {
-		character = FindObjectOfType<PlayerController>();
-		character.jumpSfxVolume = -character.jumpSfxVolume;
-		musicPlayer.mute = !musicPlayer.mute;
+	public static void MuteSounds() {
+        AudioListener.pause = !AudioListener.pause;
 	}
 
 	public void RestartMusic() {
