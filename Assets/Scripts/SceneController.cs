@@ -73,7 +73,7 @@ public class SceneController : MonoBehaviour {
 
 	public void ToggleMusicButton() {
 		musicPlayer = FindObjectOfType<MusicPlayer>();
-		musicPlayer.ToggleMusic();
+		musicPlayer.MuteSounds();
 	}
 
 	public void Quit() {

@@ -25,10 +25,9 @@ public class MusicPlayer : MonoBehaviour {
 		musicPlayer.volume = bgmVolume;
 	}
 
-	public void ToggleMusic() {
+	public void MuteSounds() {
 		character = FindObjectOfType<PlayerController>();
-		var jumpSound = character.GetComponent<AudioSource>();
-		jumpSound.mute = !jumpSound.mute;
+		character.jumpSfxVolume = -character.jumpSfxVolume;
 		musicPlayer.mute = !musicPlayer.mute;
 	}
 

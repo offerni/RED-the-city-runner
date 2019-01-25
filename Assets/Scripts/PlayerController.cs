@@ -6,24 +6,29 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
 	
+	[Header("Jump params")]
 	[SerializeField] int jumpForceY = 13;
 	[SerializeField] int doubleJumpForceY = 10;
 	[SerializeField] int forceStartY = 16;
 	[SerializeField] int forceStartX = 6;
 	[SerializeField] int jumpCount = 0; // making sure that the char isn't have any remaining jumps on start
-	[Range(0, 1)]
-	[SerializeField] float audioVolume = 0.3f;
 
-	public bool grounded = false;
-	private Rigidbody2D myRigidbody;
-	private BoxCollider2D myCollider;
-	private AudioSource audioSource;
-	private AudioSource audioSourceJump;
-	private Life life;
-	
+	[Header("Audio params")]
+	[SerializeField] AudioClip jumpSfx;
+	[Range(0, 1)] public float jumpSfxVolume = 0.5f;
+	[SerializeField] AudioClip damageSfx;
+	[Range(0, 1)] [SerializeField] float damageSfxVolume = 0.75f;
+
+
+	//Physics params
 	private int xPush = -20;
 	private int yPush = 15;
 	private int speedPush = 35;
+	public bool grounded = false;
+	private Rigidbody2D myRigidbody;
+	private BoxCollider2D myCollider;
+
+	private Life life;
 
 
 	/// <summary>
@@ -44,9 +49,6 @@ public class PlayerController : MonoBehaviour {
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<BoxCollider2D>();
 		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
-		audioSource = GetComponent<AudioSource>();
-		audioSourceJump = audioSource;
-		audioSourceJump.volume = audioVolume;
 		life = FindObjectOfType<Life>();
 		life.SetLife(3);
 }
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour {
 	public void Jump(int forceY) {
 		if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject() && !Mathf.Approximately(Time.timeScale, 0.0f)) {
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, forceY);
-			audioSourceJump.Play();
+			AudioSource.PlayClipAtPoint(jumpSfx, Camera.main.transform.position, jumpSfxVolume);
 			jumpCount--;
 		} 
 	}
@@ -106,6 +108,7 @@ public class PlayerController : MonoBehaviour {
 	public void HitCharacter(int dmg) {
 		life = FindObjectOfType<Life>();
 		Destroy(GameObject.Find("Heart_" + life.GetLife()));
+		AudioSource.PlayClipAtPoint(damageSfx, Camera.main.transform.position, damageSfxVolume);
 		life.SetLife(life.GetLife() - dmg);
 	}
 }

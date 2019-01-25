@@ -40,8 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4134147440512768}
   - component: {fileID: 61230501551957090}
-  - component: {fileID: 114250508264577658}
   - component: {fileID: 251418448162747762}
+  - component: {fileID: 114250508264577658}
   m_Layer: 15
   m_Name: Head Impact Area
   m_TagString: Untagged
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719297252797376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3394213, y: 6.5716352, z: 2}
+  m_LocalPosition: {x: -1.4555101, y: 4.2932897, z: 2}
   m_LocalScale: {x: 0.18, y: 0.18, z: 1}
   m_Children:
   - {fileID: 4134147440512768}
@@ -108,7 +108,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0795894, y: -0.29742932}
+  m_Offset: {x: -1.2580534, y: -0.29742932}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -119,7 +119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0508213, y: 7.8651423}
+  m_Size: {x: 1.6938931, y: 7.8651423}
   m_EdgeRadius: 0
 --- !u!61 &61230501551957090
 BoxCollider2D:
@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa49d991a220a14f9701080a603163e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSfx: {fileID: 8300000, guid: 209b4d9f99f20ef488d112aaf45771e7, type: 3}
+  deathSfxVolume: 0.5
 --- !u!114 &114723647850504198
 MonoBehaviour:
   m_ObjectHideFlags: 1

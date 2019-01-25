@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535796529991964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2606804, y: 6.684004, z: 2}
+  m_LocalPosition: {x: -2.0861657, y: 4.49752, z: 2}
   m_LocalScale: {x: 0.18, y: 0.18, z: 1}
   m_Children:
   - {fileID: 4531412976480434}
@@ -108,7 +108,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0600289, y: -0.27023125}
+  m_Offset: {x: -1.2357328, y: -0.27023125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -119,7 +119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0899422, y: 7.9195366}
+  m_Size: {x: 1.7385345, y: 7.9195366}
   m_EdgeRadius: 0
 --- !u!61 &61939077692766902
 BoxCollider2D:
@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa49d991a220a14f9701080a603163e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSfx: {fileID: 8300000, guid: 209b4d9f99f20ef488d112aaf45771e7, type: 3}
+  deathSfxVolume: 0.5
 --- !u!212 &212108730959285328
 SpriteRenderer:
   m_ObjectHideFlags: 1
