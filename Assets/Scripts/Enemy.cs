@@ -17,7 +17,9 @@ public class Enemy : MonoBehaviour {
 
 	private void Start() {
 		transform.position = waypoints[waypointIndex].transform.position;
-	}
+        enemyHead = FindObjectOfType<EnemyHead>();
+        headCollider2D = enemyHead.GetComponent<BoxCollider2D>();
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -55,12 +57,8 @@ public class Enemy : MonoBehaviour {
 		  /* If has impact on player, disable the head collider to avoid 
 		   * kill enemy from bottom to top when hits the head collider */		
 		} if (collision.gameObject.layer == 8) {
-
-			enemyHead = FindObjectOfType<EnemyHead>();
-			headCollider2D = enemyHead.GetComponent<BoxCollider2D>();
-			headCollider2D.enabled = false;
-			character.HitCharacter(1);
 			
+			character.HitCharacter(1);
 
 			var life = FindObjectOfType<Life>();
 			if (life.GetLife() < enemyDamage) {

@@ -35,6 +35,9 @@ public class SceneController : MonoBehaviour {
 	}
 
 	public void LoadScene(int sceneIndex) {
+        if (sceneIndex == 0) {
+            FindObjectOfType<GameSession>().ResetScore();
+        }
 		SceneManager.LoadScene(sceneIndex);
 	}
 

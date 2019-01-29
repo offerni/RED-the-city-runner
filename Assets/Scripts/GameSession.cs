@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour {
 
-	private float score;
-	private float scoreCountVelocity = 20;
+	private int score;
 	private bool grounded;
 	private bool groundedFirstTime = false;
 	private PlayerController character;
@@ -33,18 +32,11 @@ public class GameSession : MonoBehaviour {
 		}
 
 
-	public void AddToScore(float scoreValue) {
-
-		grounded = character.grounded;
-		if (grounded) {
-			groundedFirstTime = true;
-		}
-		if (groundedFirstTime) {
-			score += scoreValue * scoreCountVelocity * Time.deltaTime;
-		}
+	public void AddToScore(int scoreValue) {
+		score += scoreValue;
 	}
 
 	public void ResetScore() {
-		Destroy(gameObject);
+        score = 0;
 	}
 }

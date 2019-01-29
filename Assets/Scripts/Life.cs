@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Life : MonoBehaviour {
 	[SerializeField] GameObject heart;
-	PlayerController character;
 	private GameObject clone;
 
 	private int life;
@@ -20,7 +19,6 @@ public class Life : MonoBehaviour {
 	private int numberOfHearts;
 
 	private void Start() {
-		character = FindObjectOfType<PlayerController>();
 		for (numberOfHearts = 1; numberOfHearts <= GetLife(); numberOfHearts++) {
 			clone = Instantiate(heart, transform.position, transform.rotation);
 			clone.transform.position += Vector3.right * numberOfHearts;

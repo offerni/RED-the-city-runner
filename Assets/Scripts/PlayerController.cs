@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	private BoxCollider2D myCollider;
 
 	private Life life;
+    public float yVelocity;
 
 
 	/// <summary>
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 		} else if (jumpCount > 0 && jumpCount <=1) {
 			Jump(doubleJumpForceY);
 		}
+        yVelocity = gameObject.GetComponent<Rigidbody2D>().velocity.y;
 	}
 
 	/// <summary>
