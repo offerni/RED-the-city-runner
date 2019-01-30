@@ -46,5 +46,5 @@ MonoBehaviour:
   coin: {fileID: 1298383277, guid: d0a88c19d86ef44489cfac9c2f728cbf, type: 3}
   spawning: 1
   timeBetweenCoins: 0.1
-  mintimeBetweenSpawns: 2
-  maxtimeBetweenSpawns: 10
+  mintimeBetweenSpawns: 1
+  maxtimeBetweenSpawns: 6

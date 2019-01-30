@@ -5,10 +5,13 @@ using UnityEngine;
 public class Life : MonoBehaviour {
 	[SerializeField] GameObject heart;
 	private GameObject clone;
+    private Life lifeCanvas;
 
 	private int life;
+    private int numberOfHearts;
 
-	public int GetLife() {
+
+    public int GetLife() {
 		return life;
 	}
 
@@ -16,13 +19,12 @@ public class Life : MonoBehaviour {
 		this.life = life;
 	}
 
-	private int numberOfHearts;
-
-	private void Start() {
-		for (numberOfHearts = 1; numberOfHearts <= GetLife(); numberOfHearts++) {
-			clone = Instantiate(heart, transform.position, transform.rotation);
-			clone.transform.position += Vector3.right * numberOfHearts;
-			clone.name = "Heart_" + numberOfHearts;
-		}
-	}
+    public void ShowLifeHearts() {
+        lifeCanvas = GetComponentInParent<Life>();
+        for (numberOfHearts = 1; numberOfHearts <= GetLife(); numberOfHearts++) {
+            clone = Instantiate(heart, lifeCanvas.transform);
+            clone.transform.position = new Vector3(transform.position.x * numberOfHearts, transform.position.y);
+            clone.name = "Heart_" + numberOfHearts;
+        }
+    }
 }

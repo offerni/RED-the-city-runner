@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
 		life = FindObjectOfType<Life>();
 		life.SetLife(3);
+        life.ShowLifeHearts();
 }
 	private void Update() {
 		if (jumpCount > 1) {
