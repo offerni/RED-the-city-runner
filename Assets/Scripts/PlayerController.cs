@@ -27,9 +27,10 @@ public class PlayerController : MonoBehaviour {
 	public bool grounded = false;
 	private Rigidbody2D myRigidbody;
 	private BoxCollider2D myCollider;
-
 	private Life life;
     public float yVelocity;
+
+    private Animator anim;
 
 
 	/// <summary>
@@ -47,13 +48,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Start() {
-		myRigidbody = GetComponent<Rigidbody2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<BoxCollider2D>();
 		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
 		life = FindObjectOfType<Life>();
 		life.SetLife(3);
         life.ShowLifeHearts();
-}
+        anim = GetComponent<Animator>();
+    }
 	private void Update() {
 		if (jumpCount > 1) {
 			Jump(jumpForceY);
@@ -61,7 +63,14 @@ public class PlayerController : MonoBehaviour {
 			Jump(doubleJumpForceY);
 		}
         yVelocity = gameObject.GetComponent<Rigidbody2D>().velocity.y;
-	}
+        if (yVelocity > 0) {
+            anim.SetTrigger("jumpUp");
+        } else if (yVelocity < 0){
+            anim.SetTrigger("jumpDown");
+        } else {
+            anim.SetTrigger("run");
+        }
+    }
 
 	/// <summary>
 	/// This function check if the game isn't paused and the character is on the ground, if true: Jump.
@@ -72,7 +81,8 @@ public class PlayerController : MonoBehaviour {
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, forceY);
 			AudioSource.PlayClipAtPoint(jumpSfx, Camera.main.transform.position, jumpSfxVolume);
 			jumpCount--;
-		} 
+            print(yVelocity);
+        } 
 	}
 
 	/// <summary>
@@ -109,9 +119,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void HitCharacter(int dmg) {
-		life = FindObjectOfType<Life>();
+        life = FindObjectOfType<Life>();
 		Destroy(GameObject.Find("Heart_" + life.GetLife()));
 		AudioSource.PlayClipAtPoint(damageSfx, Camera.main.transform.position, damageSfxVolume);
 		life.SetLife(life.GetLife() - dmg);
-	}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.layer == 14) {
+            anim.SetTrigger("getDmg");
+        }
+    }
 }
