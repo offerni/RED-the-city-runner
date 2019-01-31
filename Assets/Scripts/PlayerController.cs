@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 		myCollider = GetComponent<BoxCollider2D>();
 		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
 		life = FindObjectOfType<Life>();
-		life.SetLife(3);
+		life.SetLife(5);
         life.ShowLifeHearts();
         anim = GetComponent<Animator>();
     }
