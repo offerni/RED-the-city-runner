@@ -10,30 +10,24 @@ public class SceneController : MonoBehaviour {
 	private int numberOfScenes;
 	private bool musicOn;
 	private MusicPlayer musicPlayer;
-	public bool gamePaused = false;
+	private bool gamePaused;
 	private int collisionCount = 0;
 	GameSession gameSession;
-    private PauseMenu pauseMenu;
 
 	private void Start() {
-        
 
-        //fix the bug that was keeping the game paused after restart
-        if (Mathf.Approximately(Time.timeScale, 0.0f)) {
+		//fix the bug that was keeping the game paused after restart
+		if (Mathf.Approximately(Time.timeScale, 0.0f)) {
 			Time.timeScale = 1.0f;
-            musicPlayer = FindObjectOfType<MusicPlayer>();
-            var backgroundMusic = musicPlayer.GetComponent<AudioSource>();
-            backgroundMusic.Stop();
-            backgroundMusic.Play();
-        }
+		}
 		numberOfScenes = SceneManager.sceneCountInBuildSettings;
 		currentScene = SceneManager.GetActiveScene().buildIndex;
 	}
-
-    /// <summary>
-    /// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
-    /// </summary>
-    public void LoadNextScene() {
+	
+	/// <summary>
+	/// Check if the next scene index is less or equal to the total of scenes, if true, load next scene.
+	/// </summary>
+	public void LoadNextScene() {
 
 		if (currentScene + 1 < numberOfScenes) {
 			SceneManager.LoadScene(currentScene + 1);
@@ -62,18 +56,16 @@ public class SceneController : MonoBehaviour {
 	/// 
 	/// </summary>
 	public void PauseGame() {
-        pauseMenu = FindObjectOfType<PauseMenu>();
-        musicPlayer = FindObjectOfType<MusicPlayer>();
+		musicPlayer = FindObjectOfType<MusicPlayer>();
 		var backgroundMusic = musicPlayer.GetComponent<AudioSource>();
 
-		if (pauseMenu.gameIspaused) {
-            pauseMenu.Resume();
-            backgroundMusic.Play();
-            
-        } else {
-            pauseMenu.Pause();
+		if (Mathf.Approximately(Time.timeScale, 0.0f)) {
+			Time.timeScale = 1.0f;
+			backgroundMusic.Play();
+		} else {
+			Time.timeScale = 0.0f;
 			backgroundMusic.Pause();
-        }
+		}
 	}
 
 	public void GameOver() {
