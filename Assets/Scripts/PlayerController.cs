@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour {
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, forceY);
 			AudioSource.PlayClipAtPoint(jumpSfx, Camera.main.transform.position, jumpSfxVolume);
 			jumpCount--;
-            print(yVelocity);
         } 
 	}
 
