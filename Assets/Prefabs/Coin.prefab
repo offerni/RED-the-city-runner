@@ -141,3 +141,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinSFX: {fileID: 8300000, guid: 34f547fa8bb375949b7156fed1d7ff11, type: 3}
   coinSFXVolume: 0.05
+  coinVFX: {fileID: 5877975724265705361, guid: 73596faa1d8d6a94cbcecf8bcf7f37c0, type: 3}

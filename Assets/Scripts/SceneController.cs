@@ -23,8 +23,9 @@ public class SceneController : MonoBehaviour {
 			Time.timeScale = 1.0f;
             musicPlayer = FindObjectOfType<MusicPlayer>();
             var backgroundMusic = musicPlayer.GetComponent<AudioSource>();
-            backgroundMusic.Stop();
-            backgroundMusic.Play();
+            backgroundMusic.volume = 0.8f;
+            //backgroundMusic.Stop();
+            //backgroundMusic.Play();
         }
 		numberOfScenes = SceneManager.sceneCountInBuildSettings;
 		currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -68,11 +69,11 @@ public class SceneController : MonoBehaviour {
 
 		if (pauseMenu.gameIspaused) {
             pauseMenu.Resume();
-            backgroundMusic.Play();
+            backgroundMusic.volume = 0.8f;
             
         } else {
             pauseMenu.Pause();
-			backgroundMusic.Pause();
+            backgroundMusic.volume = 0.3f;
         }
 	}
 

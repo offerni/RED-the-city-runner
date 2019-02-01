@@ -7,6 +7,7 @@ public class EnemyHead : MonoBehaviour {
 	GameSession gameSession;
 	[SerializeField] AudioClip deathSfx;
 	[Range(0,1)][SerializeField] float deathSfxVolume = 0.5f;
+    [SerializeField] GameObject deathVFX;
 
     private PlayerController character;
 
@@ -31,7 +32,9 @@ public class EnemyHead : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
 
 		if (collision.collider.gameObject.layer == 8) {
-			
+
+            var deathParticle = Instantiate(deathVFX, transform.position, transform.rotation);
+            Destroy(deathParticle, 1f);
 			Destroy(transform.parent.gameObject);
 			AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, deathSfxVolume);
 			gameSession = FindObjectOfType<GameSession>();

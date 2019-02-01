@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] int forceStartY = 16;
 	[SerializeField] int forceStartX = 6;
 	[SerializeField] int jumpCount = 0; // making sure that the char isn't have any remaining jumps on start
+    [SerializeField] GameObject jumpVFX;
 
 	[Header("Audio params")]
 	[SerializeField] AudioClip jumpSfx;
@@ -80,7 +81,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject() && !Mathf.Approximately(Time.timeScale, 0.0f)) {
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, forceY);
 			AudioSource.PlayClipAtPoint(jumpSfx, Camera.main.transform.position, jumpSfxVolume);
-			jumpCount--;
+            JumpVFX(0.2f);
+            jumpCount--;
         } 
 	}
 
@@ -93,25 +95,32 @@ public class PlayerController : MonoBehaviour {
 	private void OnCollisionEnter2D(Collision2D collision) {
 
 		if (collision.gameObject.layer == 9) {
+            jumpCount = 2;
+            myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            grounded = true;
+            JumpVFX(0.2f);
+
+        }
+        if (collision.gameObject.layer == 10) {
 			jumpCount = 2;
-			myRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 			grounded = true;
 
-		} if (collision.gameObject.layer == 10) {
-			jumpCount = 2;
-			grounded = true;
-
-		} if (collision.gameObject.layer == 12) {
+        } if (collision.gameObject.layer == 12) {
 			myRigidbody.constraints = RigidbodyConstraints2D.None;
 			myRigidbody.velocity = new Vector2(xPush, yPush) * speedPush * Time.deltaTime;
 		} 
 	}
 
-	/// <summary>
-	/// Check if player left the ground and do other stuff ('Sorry, I'm tired')
-	/// </summary>
-	/// <param name="collision"></param>
-	private void OnCollisionExit2D(Collision2D collision) {
+    private void JumpVFX(float yPosition) {
+        var tempVFX = Instantiate(jumpVFX, new Vector2(transform.position.x, transform.position.y - yPosition), transform.rotation);
+        Destroy(tempVFX, 1);
+    }
+
+    /// <summary>
+    /// Check if player left the ground and do other stuff ('Sorry, I'm tired')
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionExit2D(Collision2D collision) {
 		if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10) {
 			grounded = false;
 		}

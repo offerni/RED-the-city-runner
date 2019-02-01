@@ -6,6 +6,7 @@ public class Coin : MonoBehaviour {
 
     [SerializeField] AudioClip coinSFX;
     [SerializeField] [Range(0, 1)] float coinSFXVolume = 0.75f;
+    [SerializeField] GameObject coinVFX;
 
     private int coinSpeed = 5;
     private GameSession gameSession;
@@ -22,6 +23,8 @@ public class Coin : MonoBehaviour {
         if (collision.gameObject.layer == 8) {
             gameSession.AddToScore(20);
             AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position, coinSFXVolume);
+            var tempVFX = Instantiate(coinVFX, transform.position, transform.rotation);
+            Destroy(tempVFX, 1);
             Destroy(gameObject);
         } 
     }
