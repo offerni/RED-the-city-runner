@@ -28,7 +28,7 @@ public class GameSession : MonoBehaviour {
 	}
 
 	public int GetScore() {
-			return (int)score;
+        return score;
 		}
 
 
