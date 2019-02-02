@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour {
     [SerializeField] GameObject coinVFX;
 
     private int coinSpeed = 5;
+    private int coinValue = 20;
     private GameSession gameSession;
 
     private void Start() {
@@ -21,7 +22,8 @@ public class Coin : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.layer == 8) {
-            gameSession.AddToScore(20);
+            StopAllCoroutines();
+            StartCoroutine(gameSession.AddToScore(coinValue));
             AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position, coinSFXVolume);
             var tempVFX = Instantiate(coinVFX, transform.position, transform.rotation);
             Destroy(tempVFX, 1);

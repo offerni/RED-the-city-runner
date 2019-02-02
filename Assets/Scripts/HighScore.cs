@@ -15,13 +15,5 @@ public class HighScore : MonoBehaviour {
         scoreText = gameObject.GetComponent<Text>();
 
         scoreText.text = score.ToString();
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -62,7 +62,6 @@ public class Enemy : MonoBehaviour {
 
 			var life = FindObjectOfType<Life>();
 			if (life.GetLife() < enemyDamage) {
-
 				var sceneController = FindObjectOfType<SceneController>();
 				sceneController.GameOver();
 			}

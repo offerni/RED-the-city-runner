@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour {
     }
 
 	public void RestartGame() {
-		var mainGameSceneIndex = 1;
+		var mainGameSceneIndex = 2;
 		musicPlayer = FindObjectOfType<MusicPlayer>();
 		//musicPlayer.RestartMusic();
 		//currentScene = SceneManager.GetActiveScene().buildIndex;

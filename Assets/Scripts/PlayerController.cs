@@ -31,7 +31,11 @@ public class PlayerController : MonoBehaviour {
 	private Life life;
     public float yVelocity;
 
+    //Animation Params
     private Animator anim;
+
+    //Score Params
+    private GameSession gameSession;
 
 
 	/// <summary>
@@ -53,9 +57,10 @@ public class PlayerController : MonoBehaviour {
 		myCollider = GetComponent<BoxCollider2D>();
 		myRigidbody.velocity = new Vector2(forceStartX, forceStartY);
 		life = FindObjectOfType<Life>();
-		life.SetLife(3);
+        life.SetLife(3);
         life.ShowLifeHearts();
         anim = GetComponent<Animator>();
+        gameSession = FindObjectOfType<GameSession>();
     }
 	private void Update() {
 		if (jumpCount > 1) {

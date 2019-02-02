@@ -7,9 +7,9 @@ public class Life : MonoBehaviour {
 	private GameObject clone;
     private Life lifeCanvas;
 
-	private int life;
+	[SerializeField] int life;
     private int numberOfHearts;
-
+    
 
     public int GetLife() {
 		return life;

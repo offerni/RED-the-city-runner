@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour {
 
 	Text score;
+    int scoreSpeed = 2;
 	GameSession gameSession;
 
 
@@ -13,10 +14,17 @@ public class Score : MonoBehaviour {
 	void Start () {
 		score = GetComponent<Text>();
 		gameSession = FindObjectOfType<GameSession>();
+        gameSession.oldScore = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		score.text = gameSession.GetScore().ToString();
+
+        if (gameSession.oldScore < gameSession.GetScore()) {
+            gameSession.oldScore += 1;
+            score.text = gameSession.oldScore.ToString();
+        }
+        
+		//score.text = gameSession.GetScore().ToString();
 	}
 }

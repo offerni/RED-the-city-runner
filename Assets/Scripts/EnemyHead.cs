@@ -11,7 +11,7 @@ public class EnemyHead : MonoBehaviour {
 
     private PlayerController character;
 
-	int killEnemyPoint = 50;
+	int killEnemyValue = 50;
 
     private void Start() {
         character = FindObjectOfType<PlayerController>();
@@ -38,7 +38,8 @@ public class EnemyHead : MonoBehaviour {
 			Destroy(transform.parent.gameObject);
 			AudioSource.PlayClipAtPoint(deathSfx, Camera.main.transform.position, deathSfxVolume);
 			gameSession = FindObjectOfType<GameSession>();
-			gameSession.AddToScore(killEnemyPoint);
-		}
+            StopAllCoroutines();
+            StartCoroutine(gameSession.AddToScore(killEnemyValue));
+        }
 	}
 }

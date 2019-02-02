@@ -8,8 +8,9 @@ public class GameSession : MonoBehaviour {
 	private bool grounded;
 	private bool groundedFirstTime = false;
 	private PlayerController character;
+    public int oldScore;
 
-	private void Awake() {
+    private void Awake() {
 		SetUpSingleton();
 	}
 
@@ -32,9 +33,13 @@ public class GameSession : MonoBehaviour {
 		}
 
 
-	public void AddToScore(int scoreValue) {
-		score += scoreValue;
-	}
+	public IEnumerator AddToScore(int scoreValue) {
+        var futureScore = score + scoreValue;
+        while(score < futureScore) {
+            score += 1;
+        }
+        yield return null;
+    }
 
 	public void ResetScore() {
         score = 0;

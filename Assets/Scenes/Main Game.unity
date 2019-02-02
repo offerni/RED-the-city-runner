@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ceee4656d18254da628a448d0e46bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oldScore: 0
 --- !u!4 &446693125
 Transform:
   m_ObjectHideFlags: 0
@@ -609,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heart: {fileID: 7379652145343353206, guid: 1dbe70516795eb84aba20a82e581299f, type: 3}
+  life: 0
 --- !u!222 &718343849
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -689,7 +691,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999999
+  m_Text: 
 --- !u!222 &798710348
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10759,7 +10761,17 @@ PrefabInstance:
     - target: {fileID: 114141309154395846, guid: 2689e53c6d67d8942a157f323c01dcc8,
         type: 3}
       propertyPath: scoreTruck
-      value: 1250
+      value: 1550
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141309154395846, guid: 2689e53c6d67d8942a157f323c01dcc8,
+        type: 3}
+      propertyPath: scoreRegularCar
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141309154395846, guid: 2689e53c6d67d8942a157f323c01dcc8,
+        type: 3}
+      propertyPath: scoreSpeedCar
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2689e53c6d67d8942a157f323c01dcc8, type: 3}
@@ -11440,11 +11452,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7248902608489544214, guid: aba6fa5c33fafba45a4b60093dc0deb3,
-        type: 3}
-      propertyPath: mintimeBetweenSpawns
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aba6fa5c33fafba45a4b60093dc0deb3, type: 3}
