@@ -1,4 +1,4 @@
-# Red: the street runner
+# Red: the city runner
 An Endless Runner mobile game made in Unity 2D and C#.
 Basically, you have to jump to avoid get hit by enemies and lose life and/or get hit by cars and get pushed away from the screen losing the game instantly. 
 There's a scoreboard that counts your score based on <s> how much time you're alive </s> how much enemies you killed and how much coins you got.
