@@ -25,6 +25,7 @@ ExportedObj/
 *.opendb
 *.VC.db
 *.collabignore
+*.keystore
 
 # Unity3D generated meta files
 *.pidb.meta
