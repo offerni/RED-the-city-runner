@@ -1,5 +1,5 @@
 # Red: the city runner
-# Released, 
+# Game Released 
 - [Download on Playstore here](https://play.google.com/store/apps/details?id=com.Offerni.RedTheCityRunner)
 __________________________________________________________________________________________________________________________________________
 An Endless Runner mobile game made in Unity 2D and C#.
