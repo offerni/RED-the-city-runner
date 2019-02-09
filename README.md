@@ -1,6 +1,8 @@
 # Red: the city runner
 # Game Released 
 - [Download on Playstore here](https://play.google.com/store/apps/details?id=com.Offerni.RedTheCityRunner)
+- [Checkout my latest game called Square](https://play.google.com/store/apps/details?id=com.Offerni.Square)
+
 __________________________________________________________________________________________________________________________________________
 An Endless Runner mobile game made in Unity 2D and C#.
 Basically, you have to jump to avoid get hit by enemies and lose life and/or get hit by cars and get pushed away from the screen losing the game instantly. 
